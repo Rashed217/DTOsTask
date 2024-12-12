@@ -8,5 +8,6 @@ namespace DTOsTask.Repository
         List<Product> GetAllProducts();
         Product GetProductById(int id);
         void UpdateProduct(Product product);
+        void DeleteProduct(int id);
     }
 }

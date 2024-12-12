@@ -8,5 +8,6 @@ namespace DTOsTask.Service
         List<ProductOutputDTO> GetAllProducts(int pageNumber, int pageSize);
         ProductOutputDTO GetProductById(int id);
         ProductOutputDTO UpdateProduct(int id, ProductInputDTO productInputDTO);
+        void DeleteProduct(int id);
     }
 }

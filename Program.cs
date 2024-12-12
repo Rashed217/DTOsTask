@@ -1,36 +1,43 @@
 
+using DTOsTask.Repository;
+using DTOsTask.Service;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using DTOsTask.Model;
+
 namespace DTOsTask
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public Program(IConfiguration configuration)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            Configuration = configuration;
+        }
 
-            // Add services to the container.
+        public IConfiguration Configuration { get; }
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            var app = builder.Build();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductService, ProductService>();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            services.AddControllers();
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+                endpoints.MapControllers();
+            });
         }
     }
 }

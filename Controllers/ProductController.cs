@@ -68,5 +68,13 @@ namespace DTOsTask.Controllers
 
             return Ok(productOutputDTO);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            _productService.DeleteProduct(id);
+
+            return NoContent();
+        }
     }
 }

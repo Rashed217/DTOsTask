@@ -96,5 +96,10 @@ namespace DTOsTask.Service
                 return null;
             }
         }
+
+        public void DeleteProduct(int id)
+        {
+            _productRepository.DeleteProduct(id);
+        }
     }
 }
