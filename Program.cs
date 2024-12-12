@@ -1,13 +1,8 @@
 
 using DTOsTask.Repository;
 using DTOsTask.Service;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using DTOsTask.Model;
+
 
 namespace DTOsTask
 {
@@ -55,6 +50,5 @@ namespace DTOsTask
 
             app.Run();
         }
-
     }
 }
