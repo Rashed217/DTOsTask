@@ -4,8 +4,9 @@ namespace DTOsTask.Repository
 {
     public interface IProductRepository
     {
+        void AddProduct(Product product);
         List<Product> GetAllProducts();
         Product GetProductById(int id);
-        void AddProduct(Product product);
+        void UpdateProduct(Product product);
     }
 }

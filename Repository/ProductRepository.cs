@@ -27,5 +27,11 @@ namespace DTOsTask.Repository
         {
             return _context.Products.Find(id);
         }
+
+        public void UpdateProduct(Product product)
+        {
+            _context.Products.Update(product);
+            _context.SaveChanges();
+        }
     }
 }

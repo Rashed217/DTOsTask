@@ -71,5 +71,30 @@ namespace DTOsTask.Service
                 return null;
             }
         }
+
+        public ProductOutputDTO UpdateProduct(int id, ProductInputDTO productInputDTO)
+        {
+            var product = _productRepository.GetProductById(id);
+            if (product != null)
+            {
+                product.Name = productInputDTO.Name;
+                product.Price = productInputDTO.Price;
+                product.Category = productInputDTO.Category;
+
+                _productRepository.UpdateProduct(product);
+
+                return new ProductOutputDTO
+                {
+                    Name = product.Name,
+                    Price = product.Price,
+                    Category = product.Category,
+                    DateAdded = product.DateAdded
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
