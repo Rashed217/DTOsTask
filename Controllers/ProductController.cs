@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DTOsTask.Controllers
 {
     
-    [Authorize]
+    [Authorize] // This attribute ensures that only authenticated users can access the controller or action method. 
+                // If a user is not authenticated, the framework will return a 401 Unauthorized response.
     [ApiController] // Marks the class as an API controller and defines the route pattern for the controller's actions
     [Route("api/[controller]")]  // The route will be prefixed with "api/Products" based on the controller name "Products"
     public class ProductsController : ControllerBase
