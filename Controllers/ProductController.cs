@@ -1,11 +1,13 @@
 ﻿using DTOsTask.DTO;
 using DTOsTask.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DTOsTask.Controllers
 {
-    // Marks the class as an API controller and defines the route pattern for the controller's actions
-    [ApiController]
+    
+    [Authorize]
+    [ApiController] // Marks the class as an API controller and defines the route pattern for the controller's actions
     [Route("api/[controller]")]  // The route will be prefixed with "api/Products" based on the controller name "Products"
     public class ProductsController : ControllerBase
     {
